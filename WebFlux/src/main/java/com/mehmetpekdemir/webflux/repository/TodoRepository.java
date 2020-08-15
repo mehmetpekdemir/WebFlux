@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.mehmetpekdemir.webflux.entity.Todo;
 
+import reactor.core.publisher.Flux;
+
 /**
  * 
  * @author MEHMET PEKDEMIR
@@ -13,4 +15,6 @@ import com.mehmetpekdemir.webflux.entity.Todo;
 @Repository
 public interface TodoRepository extends ReactiveMongoRepository<Todo, String> {
 
+	Flux<Todo> findByUserName(String userName);
+	
 }
