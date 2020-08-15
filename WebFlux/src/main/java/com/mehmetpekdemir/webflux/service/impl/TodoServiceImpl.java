@@ -1,5 +1,7 @@
 package com.mehmetpekdemir.webflux.service.impl;
 
+import java.time.LocalDate;
+
 import org.springframework.stereotype.Service;
 
 import com.mehmetpekdemir.webflux.entity.Todo;
@@ -29,6 +31,18 @@ public class TodoServiceImpl implements TodoService {
 	@Override
 	public Flux<Todo> getAllTodos() {
 		return todoRepository.findAll();
+	}
+
+	@Override
+	public void createTodo(Todo todo) {
+		final Todo createTodo = Todo.builder().userName(todo.getUserName()).description(todo.getDescription())
+				.startDate(LocalDate.now()).build();
+		todoRepository.save(createTodo).subscribe();
+	}
+
+	@Override
+	public void deleteTodo(String id) {
+		todoRepository.deleteById(id).subscribe();
 	}
 
 }

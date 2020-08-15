@@ -16,4 +16,8 @@ public interface TodoService {
 
 	Flux<Todo> getAllTodos();
 
+	void createTodo(Todo todo);
+
+	void deleteTodo(String id);
+
 }

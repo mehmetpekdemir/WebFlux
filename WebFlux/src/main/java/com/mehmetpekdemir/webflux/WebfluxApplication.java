@@ -31,7 +31,7 @@ public class WebfluxApplication {
 
 	@EventListener(ApplicationStartedEvent.class)
 	public void appStart() {
-		IntStream.range(0, 300).mapToObj(this::generate)
+		IntStream.range(0, 10).mapToObj(this::generate)
 		.map(todoRepository::save).collect(Collectors.toList())
 		.forEach(item -> item.subscribe());
 	}
